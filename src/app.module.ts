@@ -1,28 +1,34 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
-import { DevConfigService } from './common/providers/DevConfigService';
+import { Song } from './songs/song.entity';
+// import { DataSource } from 'typeorm';
 
 @Module({
-  imports: [SongsModule],
-  controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: DevConfigService,
-      useClass: DevConfigService,
-    },
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      database: 'nfund',
+      host: 'localhost',
+      port: 5432,
+      username: 'pguser',
+      password: 'p@ssword',
+      entities: [Song],
+      synchronize: true,
+    }),
+    SongsModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
+  constructor(/*private dataSource: DataSource*/) {
+    // console.log('dbName ', dataSource.driver.database);
+  }
   configure(consumer: MiddlewareConsumer) {
     // consumer.apply(LoggerMiddleware).forRoutes('songs'); // option no 1
     // consumer
