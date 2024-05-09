@@ -9,6 +9,8 @@ import { Song } from './songs/song.entity';
 import { Artist } from './artists/artist.entity';
 import { User } from './users/user.entity';
 // import { DataSource } from 'typeorm';
+import { PlayListModule } from './playlists/playlists.module';
+import { Playlist } from './playlists/playlist.entity';
 
 @Module({
   imports: [
@@ -19,10 +21,11 @@ import { User } from './users/user.entity';
       port: 5432,
       username: 'pguser',
       password: 'p@ssword',
-      entities: [Song, Artist, User],
+      entities: [Song, Artist, User, Playlist],
       synchronize: true,
     }),
     SongsModule,
+    PlayListModule,
   ],
   controllers: [AppController],
   providers: [AppService],
