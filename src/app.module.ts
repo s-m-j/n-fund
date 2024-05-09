@@ -11,6 +11,8 @@ import { User } from './users/user.entity';
 // import { DataSource } from 'typeorm';
 import { PlayListModule } from './playlists/playlists.module';
 import { Playlist } from './playlists/playlist.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { Playlist } from './playlists/playlist.entity';
     }),
     SongsModule,
     PlayListModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
