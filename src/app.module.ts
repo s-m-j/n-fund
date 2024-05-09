@@ -6,6 +6,8 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { Song } from './songs/song.entity';
+import { Artist } from './artists/artist.entity';
+import { User } from './users/user.entity';
 // import { DataSource } from 'typeorm';
 
 @Module({
@@ -17,7 +19,7 @@ import { Song } from './songs/song.entity';
       port: 5432,
       username: 'pguser',
       password: 'p@ssword',
-      entities: [Song],
+      entities: [Song, Artist, User],
       synchronize: true,
     }),
     SongsModule,
