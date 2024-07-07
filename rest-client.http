@@ -58,7 +58,7 @@ Content-Type: application/json
 {
     "firstName": "john",
     "lastName": "doe",
-    "email": "john1@gmail.com",
+    "email": "ssmaslov@gmail.com",
     "password": "123456"
 }
 
@@ -67,6 +67,12 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "john1@gmail.com",
+    "email": "ssmaslov@gmail.com",
     "password": "123456"
 }
+
+
+### Profile
+
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNzbWFzbG92QGdtYWlsLmNvbSIsInN1YiI6MTgsImlhdCI6MTcyMDM3NzE0MywiZXhwIjoxNzIwNDYzNTQzfQ.PBzu-ACD0GWQlTEhjGBWjmE7JWO56J-M3I6v_NYHvuY
